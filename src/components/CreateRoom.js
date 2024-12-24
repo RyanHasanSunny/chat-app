@@ -1,31 +1,30 @@
 import React, { useState } from "react";
 import { socket } from "../services/socket";
-import "./styles.css";
 
 function CreateRoom() {
     const [roomName, setRoomName] = useState("");
 
     const handleCreateRoom = () => {
         if (roomName.trim()) {
-            socket.emit("createRoom", roomName); // Emit the createRoom event
-            setRoomName(""); // Clear the input field
+            socket.emit("createRoom", roomName); // Emit event to create a new room
+            setRoomName(""); // Clear input
         } else {
             alert("Room name cannot be empty.");
         }
     };
 
     return (
-        <div className="Createroom">
+        <div className="form-container">
+            <label>Create a Room</label>
             <input
                 type="text"
                 placeholder="Enter room name"
                 value={roomName}
                 onChange={(e) => setRoomName(e.target.value)}
             />
-
-           
-           <button className="button" onClick={handleCreateRoom}>Create Room</button>
-            
+            <button className="button-primary" onClick={handleCreateRoom}>
+                Create Room
+            </button>
         </div>
     );
 }

@@ -205,3 +205,15 @@ input {
     border-radius: 5px;
     font-size: 1em;
 }
+.file-input {
+    margin-left: 10px;
+}
+
+.message a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.message a:hover {
+    text-decoration: underline;
+}

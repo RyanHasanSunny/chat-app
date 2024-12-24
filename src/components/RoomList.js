@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { socket } from "../services/socket";
-import "./styles.css";
+
 function RoomList({ joinRoom }) {
     const [rooms, setRooms] = useState([]);
     const [username, setUsername] = useState("");
@@ -16,25 +16,31 @@ function RoomList({ joinRoom }) {
 
     const handleJoinRoom = (roomName) => {
         if (!username.trim()) {
-            alert("Please enter your name before joining!");
+            alert("Please enter your name before joining.");
             return;
         }
-        joinRoom(roomName, username); // Pass room and username to the parent component
+        joinRoom(roomName, username);
     };
 
     return (
-        <div>
+        <div className="form-container">
+            <label>Join a Room</label>
             <input
                 type="text"
                 placeholder="Enter your name"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
-            <h2>Available Rooms</h2>
-            <ul>
+            <ul className="room-list">
                 {rooms.map((room, index) => (
                     <li key={index}>
-                        {room} <button onClick={() => handleJoinRoom(room)}>Join</button>
+                        {room}
+                        <button
+                            className="button-primary"
+                            onClick={() => handleJoinRoom(room)}
+                        >
+                            Join
+                        </button>
                     </li>
                 ))}
             </ul>
